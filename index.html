@@ -1,0 +1,141 @@
+<!doctype HTML>
+<html>
+        <head>
+            <title> Title </title>
+            <style>
+                img{
+                    width: 200px;
+                }
+                body{
+                    background-color: cyan
+                }
+                body{
+                    font-family: sans-serif
+                }
+                #border{
+                    border: solid;
+                    text-align: center
+                }
+             
+            </style>
+            <script>
+                var pr1 = 5, Wpr1 = 3;
+                var pr2 = 10, Wpr2 = 8;
+                var pr3 = 15, Wpr3 = 12;
+                var taxrate = 8.75;
+                
+        
+                function initPrice(){
+                    document.getElementById("span1").innerHTML = "Price: $" + pr1;
+                    document.getElementById("span2").innerHTML = "Price: $" + pr2;
+                    document.getElementById("span3").innerHTML = "Price: $" + pr3; 
+
+                }
+
+
+                function ProcessOrder(){
+                    var qty1 = parseInt(document.getElementById("qty1").value);
+                    var qty2 = parseInt(document.getElementById("qty2").value);
+                    var qty3 = parseInt(document.getElementById("qty3").value);
+                    
+
+                    var custsubtotal = (pr1 * qty1) + (pr2 * qty2) + (pr3 * qty3);
+                    var compsubtotal = (Wpr1 * qty1) + (Wpr2 * qty2) + (Wpr3 * qty3);
+                    var profit = custsubtotal - compsubtotal;
+                    var ttitm = (qty1 + qty2 + qty3);
+                    var tax = custsubtotal * taxrate/100;
+                    
+                    if (custsubtotal < 100){
+                        shipping = 25
+                    }else if (custsubtotal >= 100 && custsubtotal < 200){
+                        shipping = 10
+                    }else{
+                        shipping = 0
+                    }
+                    var custtotal = custsubtotal + tax + shipping;
+                    var op = document.getElementById("output");
+
+                    var build= " ";
+                    build += "<div>"
+                    build += "<pre>"
+                    build += "CUSTOMER ORDER DETAILS";
+                    build += "<br>"
+                    build += "Subtotal:                             " + "$" + custsubtotal;
+                    build += "<br>"
+                    build += "Tax:                                  " + tax + "%";
+                    build += "<br>"
+                    build += "Shipping & Handling:                  " + "$" + shipping;                    
+                    build += "<br>"
+                    build += "Customer Total:                       " + "$" + custtotal;
+
+                    build += "<br><br>"
+                    build += "<pre>"
+                    build += "<div>"
+                    build += "ORDER DETAILS FOR COMPANY";
+                    build += "<br>"
+                    build += "Total Items sold:                     " + ttitm;
+                    build += "<br>"
+                    build += "Customer Subtotal:                    " + "$" + custsubtotal;
+                    build += "<br>"
+                    build += "Company Subtotal:                     " + "$" + compsubtotal;
+                    build += "<br>"
+                    build += "Profit/Loss:                          " + "$" + profit;
+
+
+                    op.innerHTML = build;
+
+
+                
+
+                }
+
+
+
+
+            
+                
+                
+
+
+            </script>
+
+            <script>
+
+
+            </script>
+        </head>
+        <body onload="initPrice()">
+            <h1 id="border"> Carlos's Shop </h1>
+            <hr>
+            <hr>
+            <! Item 1 >
+            <div>
+                <img src = "tp.jpg" ><br>
+                <p>This toilet paper is really smooth, and really absorbant and it cleans better than any other toilet paper out in the market</p><br>
+                <span id = "span1" ></span>
+                <input type="text" id = "qty1" placeholder = "Enter quantity">
+            <hr>
+            <hr>
+            <! Item 2 >
+            <div>
+                <img src = "basketball.gif" ><br>
+                <p> This basketball has a performance rubber cover, deep channel design for improver grip, great for shooters and is designed for outdoor play</p><br>
+                <span id = "span2" ></span>
+                <input type="text" id = "qty2" placeholder = "Enter quantity">
+            <hr>
+            <hr>
+            <! Item 3 >
+            <div>
+                <img src = "ES.jpg" ><br>
+                <p> This sock is very comfortable. It is 15% cotton, machine washable and Reinforced heel and toe maximizes durability. </p><br>
+                <span id = "span3"> </span>
+                <input type="text" id = "qty3" placeholder = "Enter quantity"></br>
+                </br>
+                <button onclick="ProcessOrder()" > Calculate </button>
+                <div id = "output" ></div>
+
+
+            
+
+        </body>
+</html>
